@@ -1,0 +1,39 @@
+<!-- Navbar Start -->
+    <div class="container-fluid p-0 nav-bar">
+        <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
+            <a href="{{ path('index') }}" class="navbar-brand px-lg-4 m-0">
+                <h1 class="m-0 display-4 text-uppercase text-white">KOPPEE</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto p-4">
+                    <a href="{{ path('index') }}" class="nav-item nav-link {{ (app.request.attributes.get('_route') == 'index')  ? 'active': ''}}">
+                    Home</a>
+                    <a href="{{ path('about') }}" class="nav-item nav-link {{ (app.request.attributes.get('_route') == 'about')  ? 'active': ''}}">
+                    About</a>
+                    <a href="{{ path('service') }}" class="nav-item nav-link {{ (app.request.attributes.get('_route') == 'service')  ? 'active': ''}}">
+                    Service</a>
+                    <a href="{{ path('menu') }}" class="nav-item nav-link {{ (app.request.attributes.get('_route') == 'menu')  ? 'active': ''}}">
+                    Menu</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu text-capitalize">
+                            <a href="{{ path('reservation') }}" class="dropdown-item">Reservation</a>
+                            <a href="{{ path('testimonial') }}" class="dropdown-item">Testimonial</a>
+                        </div>
+                    </div>
+                    <a href="{{ path('contact') }}" class="nav-item nav-link {{ (app.request.attributes.get('_route') == 'contact')  ? 'active': ''}}">
+                    Contact</a>
+                    {% if app.user %}
+                    <a href="{{ path('app_logout') }}" class="fa fa-sign-out sr-icons"></i> {{ app.user.email }} - Logout</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="nav-item nav-link {{ (app.request.attributes.get('_route') == 'app_login')  ? 'active': ''}} lien">Login</a>
+                    <a href="{{ path('app_register') }}" class="nav-item nav-link {{ (app.request.attributes.get('_route') == 'app_register')  ? 'active': ''}} ">Register</a>
+                {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
