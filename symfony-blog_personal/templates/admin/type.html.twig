@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}Type{% endblock %}
+
+{# Como la página de inicio tiene un header diferente al resto
+pondremos lo siguiente para que el base detecte quienes lo tienen
+y quienes no #}
+
+{% set show_header = true %}
+{% set page_title = 'Type' %}
+{% set breadcrumb = 'Admin' %}
+
+{% block body%}
+<!-- Principal Content Start -->
+   <div id="types">
+   	  <div class="container">
+   	    <div class="col-xs-12 col-sm-8 col-sm-push-2">
+       	   <h1>Type</h1>
+		   {{ form(form, {'attr': {'class':'form-horizontal'}}) }}
+       	   <hr class='divider'>
+		   <div>
+			<table class="table">
+				<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+				</tr>
+				</thead>
+				<tbody>
+				{% for t in types %}
+				<tr>
+					<th scope="row">{{ t.id }}</th>
+					<td>
+						{{ t.name }}
+					</td>
+				</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+       	</div>   
+   	  </div>
+   </div>
+<!-- Principal Content Start -->
+{% endblock %}
