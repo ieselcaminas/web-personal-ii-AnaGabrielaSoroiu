@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Type;
 
 final class PageController extends AbstractController
 {
@@ -27,9 +30,13 @@ final class PageController extends AbstractController
     }
 
     #[Route('/menu', name: 'menu')]
-    public function menu(): Response
+    public function menu(ManagerRegistry $doctrine): Response
     {
-        return $this->render('page/menu.html.twig', []);
+        $types = $doctrine->getRepository(Type::class)->findAll();
+
+        return $this->render('page/menu.html.twig', [
+            'types' => $types
+        ]);
     }
 
     #[Route('/reservation', name: 'reservation')]

@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\TypeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: TypeRepository::class)]
 class Type
@@ -15,6 +17,9 @@ class Type
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
+
+    #[ORM\OneToMany(mappedBy: "type", targetEntity: Menu::class)]
+    private Collection $menus;
 
     public function getId(): ?int
     {
@@ -31,5 +36,14 @@ class Type
         $this->name = $name;
 
         return $this;
+    }
+
+    public function __construct() {
+        $this->menus = new ArrayCollection();
+    }
+
+    public function getMenus(): Collection
+    {
+        return $this->menus;
     }
 }

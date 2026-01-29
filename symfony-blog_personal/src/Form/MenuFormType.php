@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Type;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
 class MenuFormType extends AbstractType
 {
@@ -31,6 +32,10 @@ class MenuFormType extends AbstractType
         ])
             ->add('name')
             ->add('description')
+            ->add('price', MoneyType::class, [
+                'currency' => 'EUR',
+                'scale' => 2,
+            ])
             ->add('type', EntityType::class, array(
             'class' => Type::class,
             'choice_label' => 'name'))

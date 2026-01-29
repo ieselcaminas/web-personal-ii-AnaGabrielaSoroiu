@@ -15,7 +15,38 @@ y quienes no #}
    	  <div class="container">
    	    <div class="col-xs-12 col-sm-8 col-sm-push-2">
        	   <h1>Menus</h1>
-       	   <hr>
+		   {{ form(form, {'attr': {'class':'form-horizontal'}})}}
+       	   <hr class='divider'>
+		   <div>
+			<table class="table">
+				<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">File</th>
+					<th scope="col">Name</th>
+					<th scope="col">Description</th>
+					<th scope="col">Price</th>
+					<th scope="col">Type</th>
+				</tr>
+				</thead>
+				<tbody>
+				{% for m in menus %}
+				<tr>
+					<th scope="row">{{ m.id }}</th>
+					<td>
+						<img src="{{ asset('uploads/menus/' ~ m.file) }}" alt="{{ m.name }}" style="width:80px; height:auto;" >
+					</td>
+					<td>
+						{{ m.name }}
+					</td>
+					<td>{{ m.description }}</td>
+					<td>{{ m.price }}</td>
+					<td>{{ m.type.name }}</td>
+				</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
        	</div>   
    	  </div>
    </div>
