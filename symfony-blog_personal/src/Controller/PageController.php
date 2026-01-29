@@ -12,9 +12,13 @@ use App\Entity\Type;
 final class PageController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
-        return $this->render('page/index.html.twig', []);
+        $types = $doctrine->getRepository(Type::class)->findAll();
+
+        return $this->render('page/index.html.twig', [
+            'types' => $types
+        ]);
     }
 
     #[Route('/about', name: 'about')]
